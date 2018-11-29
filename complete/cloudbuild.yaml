@@ -1,10 +1,13 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/docker-example', './complete/' ]
-  timeout: 500s
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/docker-example']
 - name: gcr.io/cloud-builders/docker
-  args: ['run', 'gcr.io/$PROJECT_ID/docker-example']
+  args: ['tag',
+         'gcr.io/$PROJECT_ID/docker-example',
+         'gcr.io/$PROJECT_ID/docker-example:v1']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/docker-example:v1']
+- name: gcr.io/cloud-builders/docker
+  args: ['run', 'gcr.io/$PROJECT_ID/docker-example:v1']
 images:
-- 'gcr.io/$PROJECT_ID/docker-example'
+- 'gcr.io/$PROJECT_ID/docker-example:v1'
