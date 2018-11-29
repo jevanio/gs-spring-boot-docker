@@ -4,5 +4,7 @@ steps:
   timeout: 500s
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/docker-example']
+- name: gcr.io/cloud-builders/docker
+  args: ['run', 'gcr.io/$PROJECT_ID/docker-example']
 images:
 - 'gcr.io/$PROJECT_ID/docker-example'
