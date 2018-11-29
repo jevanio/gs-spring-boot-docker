@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM gcr.io/cloud-builders/javac:8
 VOLUME /tmp
 ARG JAR_FILE
 COPY ${JAR_FILE} app.jar
